@@ -56,16 +56,17 @@ while (count <= aantal):
     oefening.pop()
     #print(oefening)
     ##!Dit werkt nog niet, kan dit nagekeken worden?
-    oefeningen[count] = oefening
+    #oefeningen[count] = oefening
+    oefeningen[count]={oefening}
     #print(oefeningen[count])
     ##dit werkt wel weer
     oefeningstring = strip_Last_Operation(oefeningstring)
     oefeningenStrings[count] = oefeningstring
+    ##loop door de oefening array om de berekening te maken
     oefening.clear()
     oefeningstring = ""
     
     count +=1
-
     #maak de lijst weer zodanig dat het een array van de elementen wordt
     #loop door de elementen waarbij per element word nagegaan of het een getal is, of een teken, indien teken, voer checks uit die omzetten en toevoegen aan de oplossing
 
@@ -80,9 +81,6 @@ while (count <= aantal):
 
     #gebruik een dictionary key=string versie,value = array(niet omgezet)
     
-    #item_element = item.replace("[",'')
-    #print(item_element[0])
-
 for item in oefeningenStrings:
     #print(oefeningen[item])
     print(oefeningenStrings[item])
