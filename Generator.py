@@ -1,16 +1,29 @@
 #Importeer de libraries
 from random import randint
+
+
+def strip_Last_Operation(s):
+    if s.endswith(" XOR "): s = s.rstrip( "XOR ")
+    if s.endswith(" AND "): s = s.rstrip(" AND ")
+    if s.endswith(" OR "): s = s.rstrip(" OR ")
+    if s.endswith(" + "): s = s.rstrip(" + ")
+    if s.endswith(" - "): s = s.rstrip(" - ")
+    if s.endswith(" * "): s = s.rstrip(" * ")
+    if s.endswith(" / "): s = s.rstrip(" / ")
+    return s
 #Maak de arrays aan
 #alle mogelijke operaties
 #alle mogelijke talstelsels
 operaties =["+","-","*","/","AND","OR","XOR"]
 mogelijke_talstelsels = ["10","16","8"]
-oefeningen = []
+oefening = []
+oefeningen = {}
+oefeningenStrings={}
+oefeningenOplossingen={}
 aantal = 20
+count = 1
 
 #maak een lus aan waarin je x aantal keer een random getal1 met signatuur, teken en randomgetal2 met signatuur
-#TODO:geneste opgaves
-count = 1
 while (count <= aantal):
     #maak een array aan voor de oefeningen
     #maak arrays aan voor elke oefening
@@ -18,24 +31,41 @@ while (count <= aantal):
     #plaats random aantal getallen erin met evenveel stelsels en 1 teken minder
     moeilijkheidsgraad = int(randint(2,4))
     elementen = 1
-    oefening = []
+    
+    oefeningstring = ""
     while (elementen <= moeilijkheidsgraad):
         stelsel = mogelijke_talstelsels[randint(0,2)]
+        operatie = operaties[randint(0,6)]
         if(stelsel=="8"):
-            oefening.append(format(randint(~500,500),"%h"))
+            num= randint(~500,500)
+            oefening.append(num)
+            oefeningstring += str(format(num,'0o'))
         elif(stelsel=="16"):
-            oefening.append(hex(randint(~500,500)))
+            num= randint(~500,500)
+            oefening.append(num)
+            oefeningstring += str(format(num,'0X'))
+        else:
+            num= randint(~500,500)
+            oefening.append(num)
+            oefeningstring += str(num)
         oefening.append('('+ str(stelsel)+')')
-        oefening.append(operaties[randint(0,6)])
+        oefeningstring += '('+ str(stelsel)+')'
+        oefening.append(operatie)
+        oefeningstring += " "+(operatie)+" "
         elementen +=1
     oefening.pop()
-    oefeningen.append(str(oefening))
+    #print(oefening)
+    ##!Dit werkt nog niet, kan dit nagekeken worden?
+    oefeningen[count] = oefening
+    #print(oefeningen[count])
+    ##dit werkt wel weer
+    oefeningstring = strip_Last_Operation(oefeningstring)
+    oefeningenStrings[count] = oefeningstring
     oefening.clear()
+    oefeningstring = ""
     
     count +=1
 
-for item in oefeningen:
-    print(item)
     #maak de lijst weer zodanig dat het een array van de elementen wordt
     #loop door de elementen waarbij per element word nagegaan of het een getal is, of een teken, indien teken, voer checks uit die omzetten en toevoegen aan de oplossing
 
@@ -50,5 +80,10 @@ for item in oefeningen:
 
     #gebruik een dictionary key=string versie,value = array(niet omgezet)
     
-    item_element = item.replace("[",'')
-    print(item_element[0])
+    #item_element = item.replace("[",'')
+    #print(item_element[0])
+
+for item in oefeningenStrings:
+    #print(oefeningen[item])
+    print(oefeningenStrings[item])
+print(oefeningen)
