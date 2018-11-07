@@ -20,8 +20,12 @@ while (count <= aantal):
     elementen = 1
     oefening = []
     while (elementen <= moeilijkheidsgraad):
-        oefening.append(randint(~500,500))
-        oefening.append('('+ str(mogelijke_talstelsels[randint(0,2)])+')')
+        stelsel = mogelijke_talstelsels[randint(0,2)]
+        if(stelsel=="8"):
+            oefening.append(oct(randint(~500,500)))
+        elif(stelsel=="16"):
+            oefening.append(hex(randint(~500,500)))
+        oefening.append('('+ str(stelsel)+')')
         oefening.append(operaties[randint(0,6)])
         elementen +=1
     oefening.pop()
@@ -31,9 +35,8 @@ while (count <= aantal):
     count +=1
 
 for item in oefeningen:
-    list(item)
     print(item)
-
+    #maak de lijst weer zodanig dat het een array van de elementen wordt
     #loop door de elementen waarbij per element word nagegaan of het een getal is, of een teken, indien teken, voer checks uit die omzetten en toevoegen aan de oplossing
 
     #maak een lus die kijkt of het element tussen haakjes staat, zo ja= zet element ervoor om in dat stelsel en append to string
@@ -44,3 +47,8 @@ for item in oefeningen:
     #and = &
     #or = |
     #XOR = ^
+
+    #gebruik een dictionary key=string versie,value = array(niet omgezet)
+    
+    item_element = item.replace("[",'')
+    print(item_element[0])
