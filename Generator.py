@@ -20,7 +20,7 @@ while (count <= aantal):
     elementen = 1
     oefening = []
     while (elementen <= moeilijkheidsgraad):
-        oefening.append(randint(-129,128))
+        oefening.append(randint(~500,500))
         oefening.append('('+ str(mogelijke_talstelsels[randint(0,2)])+')')
         oefening.append(operaties[randint(0,6)])
         elementen +=1
@@ -40,3 +40,7 @@ for item in oefeningen:
     #in dezelfde lus, kijk of elk 3e element een teken is en voeg volgens deze de bewerking uit en plaats deze in een variabele
     #plaats oplossing aan het einde van de opgave
     #plaats alles in een html file
+
+    #and = &
+    #or = |
+    #XOR = ^
