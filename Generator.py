@@ -22,7 +22,7 @@ while (count <= aantal):
     while (elementen <= moeilijkheidsgraad):
         stelsel = mogelijke_talstelsels[randint(0,2)]
         if(stelsel=="8"):
-            oefening.append(oct(randint(~500,500)))
+            oefening.append(format(randint(~500,500),"%h"))
         elif(stelsel=="16"):
             oefening.append(hex(randint(~500,500)))
         oefening.append('('+ str(stelsel)+')')
